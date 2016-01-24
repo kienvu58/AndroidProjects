@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Ringtones</string>
+    <string name="rate_app">Rate us!</string>
+    <string name="share_on_facebook">Share on Facebook</string>
+    <string name="share_on_twitter">Share on Twitter</string>
+    <string name="play_button">Image show that ringtone is playing or not</string>
+</resources>
