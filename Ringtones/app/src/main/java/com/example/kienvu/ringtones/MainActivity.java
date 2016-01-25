@@ -1,5 +1,6 @@
 package com.example.kienvu.ringtones;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRingtoneList() {
         List<Ringtone> ringtones = RingtoneHelper.getAllRingtones(this);
-        RingtonesAdapter ringtonesAdapter = new RingtonesAdapter(ringtones, this);
+        MediaPlayer mediaPlayer = new MediaPlayer();
+        RingtonesAdapter ringtonesAdapter = new RingtonesAdapter(ringtones, mediaPlayer, this);
         ringtoneListView.setAdapter(ringtonesAdapter);
     }
 
