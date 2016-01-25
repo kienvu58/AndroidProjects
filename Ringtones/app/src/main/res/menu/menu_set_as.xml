@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/phone_ringtone"
+        android:icon="@drawable/imagesbuttonplay"
+        android:title="@string/phone_ringtone"/>
+    <item android:id="@+id/alarm_ringtone"
+        android:icon="@drawable/imagesbuttonpause"
+        android:title="@string/alarm_ringtone"/>
+</menu>

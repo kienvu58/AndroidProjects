@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ringtone_layout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageButton
+    <View
         android:id="@+id/play_button"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         android:layout_marginLeft="@dimen/horizontal_margin"
         android:layout_marginStart="@dimen/horizontal_margin"
+        android:background="@drawable/imagesbuttonplay"
         android:contentDescription="@string/play_button"
-        android:scaleType="fitCenter"
-        android:src="@drawable/imagesbuttonplay" />
+        android:focusable="false"
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/ringtone_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/horizontal_margin"
         android:layout_marginLeft="@dimen/horizontal_margin"
         android:layout_marginRight="@dimen/horizontal_margin"
-        android:layout_marginStart="@dimen/horizontal_margin" />
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:gravity="center_vertical" />
 
 </LinearLayout>

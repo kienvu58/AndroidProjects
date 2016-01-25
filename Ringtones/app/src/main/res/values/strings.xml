@@ -4,4 +4,9 @@
     <string name="share_on_facebook">Share on Facebook</string>
     <string name="share_on_twitter">Share on Twitter</string>
     <string name="play_button">Image show that ringtone is playing or not</string>
+    <string name="set_as">Set as…</string>
+    <string name="alarm_ringtone">Alarm ringtone</string>
+    <string name="phone_ringtone">Phone ringtone</string>
+    <string name="set_as_alarm_ringtone">Set as alarm ringtone</string>
+    <string name="set_as_phone_ringtone">Set as phone ringtone</string>
 </resources>

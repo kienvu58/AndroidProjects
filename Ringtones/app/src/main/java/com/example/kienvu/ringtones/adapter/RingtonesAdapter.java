@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.kienvu.ringtones.R;
@@ -74,7 +73,7 @@ public class RingtonesAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.ringtone_list_row, parent, false);
             holder = new ViewHolder();
-            holder.playButton = (ImageButton) convertView.findViewById(R.id.play_button);
+            holder.playButton = convertView.findViewById(R.id.play_button);
             holder.ringtoneTitle = (TextView) convertView.findViewById(R.id.ringtone_title);
             convertView.setTag(holder);
         } else {
@@ -82,7 +81,7 @@ public class RingtonesAdapter extends BaseAdapter {
         }
 
         // Change playButton image depends on playing status
-        holder.playButton.setImageResource(playingRingtoneIds.get(position) ?
+        holder.playButton.setBackgroundResource(playingRingtoneIds.get(position) ?
                 R.drawable.imagesbuttonpause : R.drawable.imagesbuttonplay);
 
         holder.playButton.setOnClickListener(new View.OnClickListener() {
@@ -126,17 +125,12 @@ public class RingtonesAdapter extends BaseAdapter {
 
         // ringtoneTitle
         holder.ringtoneTitle.setText(ringtones.get(position).getTitle());
-        holder.ringtoneTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         return convertView;
     }
 
     private class ViewHolder {
-        ImageButton playButton;
+        View playButton;
         TextView ringtoneTitle;
     }
 }

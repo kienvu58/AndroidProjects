@@ -3,6 +3,9 @@ package com.example.kienvu.ringtones.model;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
+import android.widget.Toast;
+
+import com.example.kienvu.ringtones.R;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -37,12 +40,12 @@ public class Ringtone {
         this.title = title;
     }
 
-    public void setAsPhoneRingtone() {
-
+    public void setAsPhoneRingtone(Context context) {
+        Toast.makeText(context, R.string.set_as_phone_ringtone, Toast.LENGTH_SHORT).show();
     }
 
-    public void setAsAlarmRingtone() {
-
+    public void setAsAlarmRingtone(Context context) {
+        Toast.makeText(context, R.string.set_as_alarm_ringtone, Toast.LENGTH_SHORT).show();
     }
 
     public void play(Context context, MediaPlayer player) {
