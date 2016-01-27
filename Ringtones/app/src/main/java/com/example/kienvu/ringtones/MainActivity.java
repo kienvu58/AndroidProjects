@@ -1,8 +1,14 @@
 package com.example.kienvu.ringtones;
 
+import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +26,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private ListView ringtoneListView;
     private BottomSheetLayout bottomSheetLayout;
+    private MediaPlayer mediaPlayer;
+    private BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRingtoneList() {
         List<Ringtone> ringtones = RingtoneHelper.getAllRingtones(this);
-        MediaPlayer mediaPlayer = new MediaPlayer();
+        mediaPlayer = new MediaPlayer();
         final RingtonesAdapter ringtonesAdapter = new RingtonesAdapter(ringtones, mediaPlayer, this);
         ringtoneListView.setAdapter(ringtonesAdapter);
         ringtoneListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,5 +79,36 @@ public class MainActivity extends AppCompatActivity {
                 bottomSheetLayout.showWithSheetView(menuSheetView);
             }
         });
+
+        // Handle when phone has incoming call
+        IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
+
+                switch (telephonyManager.getCallState()) {
+                    case TelephonyManager.CALL_STATE_RINGING :
+                        ringtonesAdapter.stopAllPlaying();
+                        break;
+                    default:
+                        ringtonesAdapter.stopAllPlaying();
+                }
+            }
+        };
+        this.registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        mediaPlayer.reset();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mediaPlayer.release();
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 }

@@ -1,12 +1,7 @@
 package com.example.kienvu.ringtones.adapter;
 
-import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.MediaPlayer;
-import android.telephony.TelephonyManager;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +45,11 @@ public class RingtonesAdapter extends BaseAdapter {
             playingRingtoneIds.put(position, true);
         }
         notifyDataSetChanged();
+    }
+
+    public void stopAllPlaying() {
+        mediaPlayer.reset();
+        playingRingtoneIds.clear();
     }
 
     @Override
@@ -103,25 +103,6 @@ public class RingtonesAdapter extends BaseAdapter {
             }
         });
 
-        // Handle when phone has incoming call
-        IntentFilter filter = new IntentFilter("android.intent.action.PHONE_STATE");
-        BroadcastReceiver receiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Service.TELEPHONY_SERVICE);
-
-                switch (telephonyManager.getCallState()) {
-                    case TelephonyManager.CALL_STATE_RINGING :
-                        mediaPlayer.reset();
-                        playingRingtoneIds.clear();
-                        break;
-                    default:
-                        mediaPlayer.reset();
-                        playingRingtoneIds.clear();
-                }
-            }
-        };
-        context.registerReceiver(receiver, filter);
 
         // ringtoneTitle
         holder.ringtoneTitle.setText(ringtones.get(position).getTitle());
