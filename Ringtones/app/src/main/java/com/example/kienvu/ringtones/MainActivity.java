@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -16,7 +15,6 @@ import com.example.kienvu.ringtones.model.Ringtone;
 import com.flipboard.bottomsheet.BottomSheetLayout;
 import com.flipboard.bottomsheet.commons.MenuSheetView;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        getOverflowMenu();
         ringtoneListView = (ListView) findViewById(R.id.ringtone_list);
         bottomSheetLayout = (BottomSheetLayout) findViewById(R.id.bottom_sheet);
     }
@@ -74,19 +71,5 @@ public class MainActivity extends AppCompatActivity {
                 bottomSheetLayout.showWithSheetView(menuSheetView);
             }
         });
-    }
-
-    private void getOverflowMenu() {
-
-        try {
-            ViewConfiguration config = ViewConfiguration.get(this);
-            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-            if (menuKeyField != null) {
-                menuKeyField.setAccessible(true);
-                menuKeyField.setBoolean(config, false);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
