@@ -1,6 +1,7 @@
 package com.example.kienvu.ringtones;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +33,13 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME_OUT);
 
-        copyFilesToSdCard();
+        SharedPreferences preferences = this.getSharedPreferences("FirstLaunch", MODE_PRIVATE);
+        if (preferences.getBoolean("isFirstLaunch", true)) {
+            copyFilesToSdCard();
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("isFirstLaunch", false);
+            editor.commit();
+        }
     }
 
     private void copyFilesToSdCard() {
