@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // TODO: When UI has updated, uncomment the line below
+        //TODO: When UI has updated, uncomment the line below
 //        AppRater.appLaunched(this);
         initView();
         initRingtoneList();
